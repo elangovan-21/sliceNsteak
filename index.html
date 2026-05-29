@@ -1,0 +1,1411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="description" content="Slice 'N Steak — 100% Ribeye Cheesesteaks with Cooper Sharp cheese, NY Style Fresh Dough Pizza, Indo-Italian Fusion. Catonsville, MD.">
+<title>Slice 'N Steak — Pizza & Ribeye Cheesesteaks | Catonsville, MD</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Oswald:wght@400;500;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════════════
+   DESIGN TOKENS — Light warm theme
+═══════════════════════════════════════════════════ */
+:root {
+  --gold:        #B8750A;
+  --gold-light:  #D4920E;
+  --gold-pale:   #FBF0DC;
+  --maroon:      #6B1020;
+  --maroon-light:#8B1A2C;
+  --cream:       #FDFAF5;
+  --warm-white:  #FFFFFF;
+  --bg:          #7C5311;
+  --bg-section:  #62410E;
+  --bg-dark:     #50350B;
+  --text-dark:   #F5ECD8;
+  --text-mid:    #C8A87A;
+  --text-light:  #9A7A5A;
+  --border:      rgba(200,140,20,0.22);
+  --border-mid:  rgba(200,140,20,0.38);
+  --shadow-sm:   0 2px 16px rgba(0,0,0,0.35);
+  --shadow-md:   0 8px 32px rgba(0,0,0,0.5);
+  --shadow-lg:   0 20px 60px rgba(0,0,0,0.6);
+  --radius:      10px;
+  --radius-lg:   16px;
+  --nav-h:       68px;
+}
+
+/* ═══════════════════════════════════════════════════
+   RESET & BASE
+═══════════════════════════════════════════════════ */
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; font-size:16px; }
+body {
+  font-family:'Lato', sans-serif;
+  background:var(--bg);
+  color:var(--cream, #F5ECD8);
+  overflow-x:hidden;
+  line-height:1.6;
+  -webkit-tap-highlight-color:transparent;
+}
+img { max-width:100%; height:auto; display:block; }
+a { color:inherit; text-decoration:none; }
+button { cursor:pointer; font-family:inherit; }
+input,select,textarea { font-size:16px; }
+
+/* ═══════════════════════════════════════════════════
+   TYPOGRAPHY
+═══════════════════════════════════════════════════ */
+.t-eyebrow {
+  font-family:'Oswald',sans-serif;
+  font-size:0.75rem; letter-spacing:3px; text-transform:uppercase;
+  color:#B8750A; display:block; margin-bottom:0.5rem;
+}
+.t-heading {
+  font-family:'Playfair Display',serif;
+  font-weight:900; line-height:1.1;
+  color:#1E0E08;
+}
+.t-sub {
+  color:#5A3A2A;
+  font-size:1.05rem; line-height:1.65;
+}
+
+/* ═══════════════════════════════════════════════════
+   LAYOUT HELPERS
+═══════════════════════════════════════════════════ */
+.container { max-width:1200px; margin:0 auto; padding:0 1.5rem; }
+.section-pad { padding:80px 0; }
+.section-pad-sm { padding:60px 0; }
+
+.section-header { text-align:center; margin-bottom:3rem; }
+.section-header .t-heading { font-size:clamp(1.8rem,4vw,3rem); margin-bottom:0.75rem; }
+.divider {
+  display:flex; align-items:center; justify-content:center; gap:10px; margin:0.75rem auto;
+}
+.divider::before,.divider::after {
+  content:''; display:block; width:50px; height:1px; background:#B8750A; opacity:0.35;
+}
+.divider-icon { color:var(--gold); font-size:1rem; }
+
+/* ═══════════════════════════════════════════════════
+   BUTTONS
+═══════════════════════════════════════════════════ */
+.btn {
+  display:inline-flex; align-items:center; justify-content:center; gap:8px;
+  font-family:'Oswald',sans-serif; font-weight:700;
+  font-size:0.9rem; letter-spacing:1.5px; text-transform:uppercase;
+  padding:13px 28px; border-radius:6px; border:none;
+  min-height:48px; white-space:nowrap;
+  transition:all 0.22s ease; text-decoration:none;
+  -webkit-appearance:none;
+}
+.btn-gold {
+  background:var(--gold); color:#fff;
+  box-shadow:0 4px 16px rgba(184,117,10,0.3);
+}
+.btn-gold:hover { background:var(--gold-light); transform:translateY(-2px); box-shadow:0 8px 24px rgba(184,117,10,0.4); }
+.btn-maroon {
+  background:var(--maroon); color:#fff;
+  box-shadow:0 4px 16px rgba(107,16,32,0.25);
+}
+.btn-maroon:hover { background:var(--maroon-light); transform:translateY(-2px); }
+.btn-outline-gold {
+  background:transparent; color:var(--gold);
+  border:2px solid var(--gold);
+}
+.btn-outline-gold:hover { background:var(--gold); color:#fff; transform:translateY(-2px); }
+.btn-outline-white {
+  background:transparent; color:#fff;
+  border:2px solid rgba(255,255,255,0.5);
+}
+.btn-outline-white:hover { border-color:#fff; background:rgba(255,255,255,0.1); }
+
+/* ═══════════════════════════════════════════════════
+   NAVBAR
+═══════════════════════════════════════════════════ */
+#navbar {
+  position:fixed; top:0; left:0; right:0; z-index:1000;
+  height:var(--nav-h);
+  background:rgba(62,41,8,0.97);
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(200,140,20,0.2);
+  display:flex; align-items:center; justify-content:space-between;
+  padding:0 2rem;
+  box-shadow:var(--shadow-sm);
+  transition:height 0.3s;
+}
+.nav-logo { display:flex; align-items:center; gap:10px; text-decoration:none; }
+.nav-logo svg { width:42px; height:42px; flex-shrink:0; }
+.nav-logo-text {
+  font-family:'Oswald',sans-serif; font-size:1.2rem; font-weight:700;
+  color:#F5ECD8; letter-spacing:0.5px;
+}
+.nav-logo-text em { color:var(--gold); font-style:normal; }
+
+.nav-links { display:flex; align-items:center; gap:1.5rem; list-style:none; }
+.nav-links a {
+  font-family:'Oswald',sans-serif; font-size:0.85rem; font-weight:500;
+  letter-spacing:1.5px; text-transform:uppercase; color:rgba(245,236,216,0.75);
+  transition:color 0.2s; position:relative; padding-bottom:2px;
+}
+.nav-links a::after {
+  content:''; position:absolute; bottom:-2px; left:0;
+  width:0; height:2px; background:#D4920E; transition:width 0.25s;
+}
+.nav-links a:hover { color:#D4920E; }
+.nav-links a:hover::after { width:100%; }
+
+.hamburger {
+  display:none; flex-direction:column; gap:5px;
+  background:none; border:none; padding:6px; cursor:pointer;
+}
+.hamburger span { display:block; width:24px; height:2px; background:#F5ECD8; border-radius:2px; transition:all 0.3s; }
+
+/* Mobile drawer */
+.mobile-drawer {
+  display:none;
+  position:fixed; top:var(--nav-h); left:0; right:0; bottom:0;
+  background:rgba(62,41,8,0.99);
+  backdrop-filter:blur(20px);
+  z-index:999; flex-direction:column;
+  padding:1.5rem; gap:0;
+  overflow-y:auto;
+  border-top:1px solid var(--border);
+}
+.mobile-drawer.open { display:flex; }
+.mobile-drawer a {
+  font-family:'Oswald',sans-serif; font-size:1.1rem; font-weight:600;
+  letter-spacing:1px; text-transform:uppercase; color:#F5ECD8;
+  padding:1rem 0; border-bottom:1px solid rgba(200,140,20,0.2);
+  display:flex; align-items:center; gap:10px;
+}
+.mobile-drawer a:last-child { border-bottom:none; }
+.mobile-drawer a:hover { color:#D4920E; }
+.mobile-drawer .drawer-cta {
+  margin-top:1.5rem; padding:1rem;
+  background:var(--gold); color:#fff !important;
+  border-radius:8px; justify-content:center;
+  font-size:1rem;
+}
+
+/* ═══════════════════════════════════════════════════
+   HERO
+═══════════════════════════════════════════════════ */
+#hero {
+  min-height:100svh; min-height:100vh;
+  padding-top:var(--nav-h);
+  position:relative; overflow:hidden;
+  display:flex; align-items:center;
+  background:#3E2908;
+}
+.hero-bg {
+  position:absolute; inset:0;
+  background:url('images/hero-indo-pizza.jpg') center/cover no-repeat;
+  opacity:0.38;
+}
+.hero-gradient {
+  position:absolute; inset:0;
+  background:linear-gradient(135deg, rgba(62,41,8,0.88) 0%, rgba(62,41,8,0.50) 55%, rgba(92,10,20,0.35) 100%);
+}
+.hero-inner {
+  position:relative; z-index:2;
+  max-width:1200px; margin:0 auto; padding:3rem 2rem;
+  display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center;
+}
+.hero-badge {
+  display:inline-flex; align-items:center; gap:6px;
+  background:rgba(184,117,10,0.2); border:1px solid rgba(184,117,10,0.5);
+  color:var(--gold-light); padding:5px 14px; border-radius:50px;
+  font-family:'Oswald',sans-serif; font-size:0.72rem; letter-spacing:2px; text-transform:uppercase;
+  margin-bottom:1.25rem;
+}
+.hero-title {
+  font-family:'Playfair Display',serif; font-weight:900;
+  font-size:clamp(2.4rem,5.5vw,5rem); line-height:1.05; color:#fff;
+  margin-bottom:1.25rem;
+}
+.hero-title .accent { color:var(--gold-light); font-style:italic; }
+.hero-desc {
+  font-size:1.05rem; line-height:1.7; color:rgba(255,255,255,0.72);
+  margin-bottom:2rem; max-width:440px;
+}
+.hero-btns { display:flex; flex-wrap:wrap; gap:0.75rem; }
+.hero-stat-row {
+  display:flex; gap:2rem; margin-top:2.5rem; padding-top:2rem;
+  border-top:1px solid rgba(255,255,255,0.12);
+}
+.hero-stat .num {
+  font-family:'Playfair Display',serif; font-size:1.8rem; font-weight:900;
+  color:var(--gold-light); display:block; line-height:1;
+}
+.hero-stat .label {
+  font-size:0.78rem; color:rgba(255,255,255,0.65);
+  font-family:'Oswald',sans-serif; text-transform:uppercase; letter-spacing:1px;
+}
+.hero-img-col { position:relative; }
+.hero-img-main {
+  width:100%; aspect-ratio:4/3; object-fit:cover;
+  border-radius:var(--radius-lg);
+  border:3px solid rgba(184,117,10,0.5);
+  box-shadow:0 24px 60px rgba(0,0,0,0.5);
+}
+.hero-img-float {
+  position:absolute; bottom:-32px; left:-32px;
+  width:52%; aspect-ratio:1; object-fit:cover;
+  border-radius:var(--radius);
+  border:3px solid rgba(107,16,32,0.6);
+  box-shadow:0 12px 36px rgba(0,0,0,0.4);
+}
+.hero-chip {
+  position:absolute; top:-16px; right:-16px;
+  background:var(--maroon); border:2px solid var(--gold);
+  border-radius:var(--radius); padding:12px 16px; text-align:center;
+}
+.hero-chip .cn { font-family:'Playfair Display',serif; font-size:1.6rem; font-weight:900; color:var(--gold-light); display:block; line-height:1; }
+.hero-chip .cl { font-family:'Oswald',sans-serif; font-size:0.65rem; letter-spacing:1px; color:rgba(255,255,255,0.65); text-transform:uppercase; }
+
+/* ═══════════════════════════════════════════════════
+   STRIP — features bar
+═══════════════════════════════════════════════════ */
+#strip {
+  background:#FFFFFF;
+  border-top:3px solid var(--gold);
+  border-bottom:1px solid rgba(184,117,10,0.15);
+  box-shadow:var(--shadow-sm);
+}
+.strip-grid {
+  display:grid; grid-template-columns:repeat(4,1fr);
+  max-width:1200px; margin:0 auto;
+}
+.strip-cell {
+  padding:1.75rem 1.5rem; text-align:center;
+  border-right:1px solid rgba(184,117,10,0.12);
+}
+.strip-cell:last-child { border-right:none; }
+.strip-icon { font-size:1.75rem; margin-bottom:0.5rem; }
+.strip-label {
+  font-family:'Oswald',sans-serif; font-size:0.95rem; font-weight:700;
+  text-transform:uppercase; letter-spacing:0.5px; color:#1E0E08;
+  margin-bottom:0.2rem;
+}
+.strip-sub { font-size:0.8rem; color:#8A6050; }
+
+/* ═══════════════════════════════════════════════════
+   SHOWCASE SPLIT
+═══════════════════════════════════════════════════ */
+#showcase {
+  display:grid; grid-template-columns:1fr 1fr;
+  height:60vh; min-height:420px; max-height:600px;
+}
+.sc-panel { position:relative; overflow:hidden; }
+.sc-panel img {
+  width:100%; height:100%; object-fit:cover;
+  transition:transform 0.6s ease;
+}
+.sc-panel:hover img { transform:scale(1.05); }
+.sc-overlay {
+  position:absolute; inset:0;
+  background:linear-gradient(to top, rgba(20,8,4,0.88) 0%, rgba(20,8,4,0.1) 60%);
+  display:flex; flex-direction:column; justify-content:flex-end;
+  padding:2rem 2.5rem;
+  transition:background 0.3s;
+}
+.sc-panel:hover .sc-overlay {
+  background:linear-gradient(to top, rgba(107,16,32,0.92) 0%, rgba(107,16,32,0.2) 70%);
+}
+.sc-tag {
+  font-family:'Oswald',sans-serif; font-size:0.7rem; letter-spacing:2px; text-transform:uppercase;
+  color:var(--gold-light); margin-bottom:0.4rem;
+}
+.sc-name {
+  font-family:'Playfair Display',serif; font-size:clamp(1.6rem,3vw,2.5rem);
+  font-weight:900; color:#fff; line-height:1.1; margin-bottom:0.5rem;
+}
+.sc-desc { font-size:0.9rem; color:rgba(255,255,255,0.72); max-width:320px; }
+
+/* ═══════════════════════════════════════════════════
+   MENU SECTION
+═══════════════════════════════════════════════════ */
+#menu { background:#FDFAF5; }
+#menu::before {
+  content:''; display:block; height:4px;
+  background:linear-gradient(90deg,var(--maroon),var(--gold),var(--maroon));
+}
+
+.tab-bar {
+  display:flex; background:#FFFFFF;
+  border:1px solid rgba(184,117,10,0.2); border-radius:var(--radius);
+  overflow:hidden; max-width:960px; margin:0 auto 2.5rem;
+  box-shadow:0 2px 12px rgba(0,0,0,0.08);
+}
+.tab-btn {
+  flex:1; padding:14px 10px;
+  font-family:'Oswald',sans-serif; font-size:0.8rem; font-weight:600;
+  letter-spacing:1px; text-transform:uppercase;
+  border:none; background:transparent; color:#8A6050;
+  border-right:1px solid rgba(184,117,10,0.15);
+  transition:all 0.22s; min-height:50px;
+  line-height:1.2;
+}
+.tab-btn:last-child { border-right:none; }
+.tab-btn.active { background:var(--maroon); color:#fff; }
+.tab-btn:hover:not(.active) { background:#F5F0E8; color:#1E0E08; }
+
+.tab-panel { display:none; }
+.tab-panel.active { display:block; }
+
+.menu-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
+  gap:1.25rem; max-width:1200px; margin:0 auto;
+}
+
+.menu-card {
+  background:#FFFFFF; border:1px solid rgba(184,117,10,0.15);
+  border-radius:var(--radius); padding:1.35rem 1.5rem;
+  transition:all 0.25s; position:relative; overflow:hidden;
+  box-shadow:var(--shadow-sm);
+}
+.menu-card::before {
+  content:''; position:absolute; top:0; left:0;
+  width:3px; height:100%; background:var(--border-mid);
+  transition:background 0.25s;
+}
+.menu-card:hover {
+  border-color:rgba(184,117,10,0.4);
+  box-shadow:0 6px 24px rgba(0,0,0,0.1);
+  transform:translateY(-2px);
+  background:#FFFDF9;
+}
+.menu-card:hover::before { background:var(--gold); }
+.mc-name {
+  font-family:'Oswald',sans-serif; font-size:1rem; font-weight:700;
+  color:#1E0E08; text-transform:uppercase; letter-spacing:0.5px;
+  margin-bottom:0.4rem;
+}
+.mc-desc { font-size:0.82rem; color:#8A6050; line-height:1.5; margin-bottom:0.85rem; }
+.mc-prices { display:flex; gap:0.6rem; flex-wrap:wrap; }
+.price-tag {
+  background:#FBF0DC; border:1px solid rgba(184,117,10,0.3);
+  border-radius:4px; padding:3px 10px;
+  font-family:'Oswald',sans-serif; font-size:0.82rem; color:#8B5E00;
+}
+.price-tag .sz { color:#8A6050; font-size:0.72rem; margin-right:3px; }
+.mc-price-single {
+  font-family:'Playfair Display',serif; font-size:1.35rem; font-weight:700; color:var(--gold);
+}
+
+.menu-sub-title {
+  font-family:'Oswald',sans-serif; font-size:1.15rem; font-weight:700;
+  text-transform:uppercase; letter-spacing:2px; color:#6B1020;
+  max-width:1200px; margin:2.5rem auto 1.25rem;
+  padding-bottom:0.6rem; border-bottom:2px solid rgba(184,117,10,0.2);
+  display:flex; align-items:center; gap:8px;
+}
+.menu-sub-title::before { content:''; display:block; width:20px; height:3px; background:var(--gold); border-radius:2px; }
+
+.featured-banner {
+  background:linear-gradient(135deg,#6B1020 0%,#8B1A2C 100%);
+  border-radius:var(--radius); padding:1.25rem 1.75rem;
+  max-width:1200px; margin:0 auto 1.75rem;
+  display:flex; align-items:center; gap:1rem;
+  box-shadow:0 4px 20px rgba(107,16,32,0.2);
+}
+.fb-icon { font-size:2rem; flex-shrink:0; }
+.fb-text h3 {
+  font-family:'Oswald',sans-serif; font-size:1rem; font-weight:700;
+  text-transform:uppercase; letter-spacing:1px; color:var(--gold-light); margin-bottom:0.2rem;
+}
+.fb-text p { font-size:0.85rem; color:rgba(255,255,255,0.85); }
+
+.flavor-wrap {
+  display:flex; flex-wrap:wrap; gap:6px;
+  max-width:1200px; margin:0 auto 1.5rem;
+  background:#FFFFFF; border:1px solid rgba(184,117,10,0.15);
+  border-radius:var(--radius); padding:1.25rem;
+  box-shadow:var(--shadow-sm);
+}
+.flavor-chip {
+  background:#F5F0E8; border:1px solid rgba(184,117,10,0.18);
+  border-radius:50px; padding:4px 12px;
+  font-size:0.78rem; color:#5A3A2A;
+}
+
+.addons-note {
+  max-width:1200px; margin:1.5rem auto 0;
+  background:#FBF0DC; border:1px solid rgba(184,117,10,0.25);
+  border-radius:var(--radius); padding:1rem 1.25rem;
+  font-size:0.82rem; color:#5A3A2A;
+}
+.addons-note strong { color:var(--gold); }
+
+/* ═══════════════════════════════════════════════════
+   GALLERY
+═══════════════════════════════════════════════════ */
+#gallery {
+  display:grid;
+  grid-template-columns:2fr 1fr 1fr;
+  grid-template-rows:280px 280px;
+  gap:3px;
+}
+.gal-item { overflow:hidden; position:relative; }
+.gal-item img { width:100%; height:100%; object-fit:cover; transition:transform 0.5s; opacity:0.9; }
+.gal-item:hover img { transform:scale(1.06); opacity:1; }
+.gal-item:first-child { grid-row:1/3; }
+.gal-label {
+  position:absolute; bottom:0.75rem; left:0.75rem;
+  background:rgba(255,255,255,0.92); color:var(--maroon);
+  font-family:'Oswald',sans-serif; font-size:0.7rem; letter-spacing:1.5px; text-transform:uppercase;
+  padding:3px 10px; border-radius:4px;
+  box-shadow:var(--shadow-sm);
+}
+
+/* ═══════════════════════════════════════════════════
+   OFFERS
+═══════════════════════════════════════════════════ */
+#offers { background:#F5F0E8; }
+
+.offer-config {
+  max-width:1200px; margin:0 auto 2rem;
+  background:#FFFFFF; border:1px dashed rgba(184,117,10,0.35);
+  border-radius:var(--radius); padding:0.85rem 1.25rem;
+  font-size:0.82rem; color:#5A3A2A;
+  display:flex; align-items:center; gap:8px;
+  box-shadow:0 2px 8px rgba(0,0,0,0.06);
+}
+.offer-config strong { color:var(--gold); }
+
+.offer-pill-bar {
+  display:flex; flex-wrap:wrap; gap:6px; justify-content:center;
+  max-width:1200px; margin:0 auto 2rem;
+}
+.offer-pill {
+  padding:8px 18px; border-radius:50px;
+  font-family:'Oswald',sans-serif; font-size:0.78rem; font-weight:600;
+  letter-spacing:1px; text-transform:uppercase;
+  border:1px solid rgba(184,117,10,0.25); background:#FFFFFF; color:#8A6050;
+  transition:all 0.22s; min-height:38px;
+}
+.offer-pill.active { background:var(--maroon); color:#fff; border-color:var(--maroon); }
+.offer-pill:hover:not(.active) { border-color:#B8750A; color:#B8750A; }
+
+.offer-panel { display:none; }
+.offer-panel.active { display:block; }
+
+.offers-grid {
+  display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+  gap:1.25rem; max-width:1200px; margin:0 auto;
+}
+.offer-card {
+  background:#FFFFFF; border:1px solid rgba(184,117,10,0.18);
+  border-radius:var(--radius-lg); padding:1.75rem 1.5rem;
+  text-align:center; position:relative; overflow:hidden;
+  box-shadow:0 2px 12px rgba(0,0,0,0.07); transition:all 0.25s;
+}
+.offer-card::before {
+  content:''; position:absolute; top:0; left:50%; transform:translateX(-50%);
+  width:50%; height:3px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+}
+.offer-card:hover { transform:translateY(-4px); box-shadow:0 12px 36px rgba(0,0,0,0.12); border-color:#B8750A; }
+.offer-badge-tag {
+  position:absolute; top:0.85rem; right:0.85rem;
+  background:#B8750A; color:#fff;
+  font-family:'Oswald',sans-serif; font-size:0.65rem; font-weight:700;
+  letter-spacing:1px; text-transform:uppercase;
+  padding:2px 9px; border-radius:50px;
+}
+.offer-icon { font-size:2.2rem; margin-bottom:0.85rem; color:#B8750A; }
+.offer-title {
+  font-family:'Playfair Display',serif; font-size:1.75rem; font-weight:900;
+  color:#8B5E00; margin-bottom:0.2rem;
+}
+.offer-subtitle {
+  font-family:'Oswald',sans-serif; font-size:0.8rem; letter-spacing:1.5px; text-transform:uppercase;
+  color:#8A6050; margin-bottom:0.75rem;
+}
+.offer-desc { font-size:0.88rem; color:#5A3A2A; line-height:1.5; margin-bottom:1rem; }
+.offer-fine { font-size:0.72rem; color:#8A6050; line-height:1.4; }
+
+/* ═══════════════════════════════════════════════════
+   PARTIES
+═══════════════════════════════════════════════════ */
+#parties { background:#FDFAF5; }
+.party-grid {
+  display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+  gap:1.5rem; max-width:1200px; margin:0 auto;
+}
+.party-card {
+  border-radius:var(--radius-lg); overflow:hidden;
+  position:relative; min-height:340px;
+  border:1px solid rgba(184,117,10,0.2); transition:all 0.3s;
+  box-shadow:0 2px 12px rgba(0,0,0,0.1);
+}
+.party-card:hover { transform:translateY(-4px); box-shadow:0 20px 60px rgba(0,0,0,0.6); border-color:#D4920E; }
+.party-bg {
+  position:absolute; inset:0;
+  background-size:cover; background-position:center;
+  filter:brightness(0.38); transition:transform 0.6s;
+}
+.party-card:hover .party-bg { transform:scale(1.06); }
+.party-overlay {
+  position:absolute; inset:0;
+  background:linear-gradient(to top, rgba(107,16,32,0.95) 0%, rgba(30,14,8,0.35) 100%);
+  display:flex; flex-direction:column; justify-content:flex-end; padding:1.75rem;
+}
+.party-emoji { font-size:2rem; margin-bottom:0.5rem; }
+.party-name {
+  font-family:'Playfair Display',serif; font-size:1.35rem; font-weight:900;
+  color:#fff; margin-bottom:0.4rem;
+}
+.party-line { font-size:0.85rem; color:rgba(255,255,255,0.72); margin-bottom:0.85rem; line-height:1.4; }
+.party-list { list-style:none; display:flex; flex-direction:column; gap:3px; margin-bottom:0.85rem; }
+.party-list li { font-size:0.78rem; color:rgba(255,255,255,0.65); display:flex; align-items:center; gap:6px; }
+.party-list li::before { content:'✓'; color:var(--gold-light); font-weight:700; }
+.party-cta-text {
+  font-family:'Oswald',sans-serif; font-size:0.82rem; font-weight:600;
+  letter-spacing:1px; text-transform:uppercase; color:var(--gold-light);
+}
+
+/* ═══════════════════════════════════════════════════
+   CONTACT
+═══════════════════════════════════════════════════ */
+#contact {
+  background:#50350B;
+  border-top:4px solid var(--gold);
+}
+.contact-grid {
+  display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:start;
+  max-width:1200px; margin:0 auto;
+}
+.contact-left h2 {
+  font-family:'Playfair Display',serif; font-size:clamp(1.8rem,3vw,2.4rem);
+  font-weight:900; color:#fff; margin-bottom:2rem;
+}
+.ci {
+  display:flex; gap:0.85rem; align-items:flex-start; margin-bottom:1.5rem;
+}
+.ci-icon {
+  width:40px; height:40px; flex-shrink:0;
+  background:rgba(184,117,10,0.15); border:1px solid rgba(184,117,10,0.3);
+  border-radius:8px; display:flex; align-items:center; justify-content:center;
+  color:var(--gold-light); font-size:0.95rem;
+}
+.ci-text h4 {
+  font-family:'Oswald',sans-serif; font-size:0.75rem; letter-spacing:1.5px; text-transform:uppercase;
+  color:var(--gold-light); margin-bottom:0.2rem;
+}
+.ci-text p, .ci-text a {
+  font-size:0.95rem; color:rgba(255,255,255,0.9); line-height:1.5; text-decoration:none;
+}
+.ci-text a:hover { color:var(--gold-light); }
+.hours-row {
+  display:flex; justify-content:space-between; padding:5px 0;
+  border-bottom:1px solid rgba(200,140,20,0.12); font-size:0.88rem;
+  color:rgba(255,255,255,0.85);
+}
+.hours-row .dy { color:rgba(255,255,255,0.6); }
+.contact-btns { display:flex; flex-wrap:wrap; gap:0.75rem; margin-top:1.75rem; }
+.contact-map {
+  border-radius:var(--radius-lg); overflow:hidden;
+  border:2px solid rgba(184,117,10,0.3);
+  height:420px; box-shadow:var(--shadow-lg);
+}
+.contact-map iframe { width:100%; height:100%; border:none; display:block; }
+
+/* ═══════════════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════════════ */
+footer {
+  background:#3E2908;
+  border-top:1px solid rgba(200,140,20,0.2);
+  padding:3rem 2rem 2rem;
+}
+.footer-grid {
+  display:grid; grid-template-columns:1.2fr 1fr 1fr; gap:3rem;
+  max-width:1200px; margin:0 auto 2rem;
+}
+.footer-logo-row { display:flex; align-items:center; gap:10px; margin-bottom:0.85rem; }
+.footer-logo-text { font-family:'Oswald',sans-serif; font-size:1.05rem; font-weight:700; color:#fff; }
+.footer-logo-text em { color:var(--gold-light); font-style:normal; }
+.footer-tagline { font-size:0.85rem; color:rgba(255,255,255,0.6); line-height:1.6; }
+.footer-col h4 {
+  font-family:'Oswald',sans-serif; font-size:0.75rem; letter-spacing:2px; text-transform:uppercase;
+  color:var(--gold-light); margin-bottom:1rem;
+}
+.footer-col ul { list-style:none; display:flex; flex-direction:column; gap:0.5rem; }
+.footer-col a { font-size:0.88rem; color:rgba(245,236,216,0.55); transition:color 0.2s; }
+.footer-col a:hover { color:var(--gold-light); }
+.footer-bottom {
+  max-width:1200px; margin:0 auto;
+  display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.75rem;
+  padding-top:1.5rem; border-top:1px solid rgba(255,255,255,0.1);
+  font-size:0.78rem; color:rgba(255,255,255,0.3);
+}
+.footer-order-link {
+  color:var(--gold-light); text-decoration:none;
+  font-family:'Oswald',sans-serif; font-size:0.82rem; letter-spacing:1px;
+  border:1px solid rgba(184,117,10,0.4); padding:5px 14px; border-radius:4px;
+  transition:all 0.2s;
+}
+.footer-order-link:hover { background:rgba(184,117,10,0.15); }
+.allergen {
+  max-width:1200px; margin:0 auto 1.5rem;
+  font-size:0.75rem; color:rgba(245,236,216,0.35); line-height:1.5;
+}
+
+/* ═══════════════════════════════════════════════════
+   STICKY ORDER BAR (mobile only)
+═══════════════════════════════════════════════════ */
+.sticky-bar {
+  display:none;
+  position:fixed; bottom:0; left:0; right:0; z-index:998;
+  background:var(--gold); color:#fff;
+  font-family:'Oswald',sans-serif; font-weight:700; font-size:1rem; letter-spacing:1.5px; text-transform:uppercase;
+  text-decoration:none; text-align:center;
+  padding:16px; padding-bottom:calc(16px + env(safe-area-inset-bottom));
+  box-shadow:0 -4px 20px rgba(0,0,0,0.2);
+}
+.sticky-bar:hover { background:var(--gold-light); }
+
+/* ═══════════════════════════════════════════════════
+   SCROLL ANIMATION
+═══════════════════════════════════════════════════ */
+.fade-up { opacity:0; transform:translateY(24px); transition:opacity 0.55s ease, transform 0.55s ease; }
+.fade-up.in { opacity:1; transform:translateY(0); }
+
+/* ═══════════════════════════════════════════════════
+   RESPONSIVE — Tablet (≤900px)
+═══════════════════════════════════════════════════ */
+@media (max-width:900px) {
+  :root { --nav-h:60px; }
+  #navbar { padding:0 1.25rem; }
+  .nav-links { display:none; }
+  .hamburger { display:flex; }
+
+  .hero-inner { grid-template-columns:1fr; gap:2rem; padding:2rem 1.5rem; }
+  .hero-img-col { display:none; }
+  .hero-title { font-size:clamp(2rem,7vw,3.2rem); }
+  .hero-stat-row { gap:1.5rem; }
+
+  .strip-grid { grid-template-columns:repeat(2,1fr); }
+  .strip-cell:nth-child(2) { border-right:none; }
+  .strip-cell:nth-child(3) { border-right:1px solid var(--border); border-top:1px solid var(--border); }
+  .strip-cell:nth-child(4) { border-top:1px solid var(--border); border-right:none; }
+
+  #showcase { grid-template-columns:1fr; height:auto; max-height:none; }
+  .sc-panel { min-height:280px; }
+
+  .contact-grid { grid-template-columns:1fr; gap:2.5rem; }
+  .contact-map { height:300px; }
+
+  .footer-grid { grid-template-columns:1fr 1fr; gap:2rem; }
+  .footer-grid > div:first-child { grid-column:1/3; }
+
+  #gallery { grid-template-columns:1fr 1fr; grid-template-rows:220px 220px 220px; }
+  .gal-item:first-child { grid-row:auto; grid-column:1/3; height:260px; }
+
+  .sticky-bar { display:flex; align-items:center; justify-content:center; gap:8px; }
+  footer { padding-bottom:calc(80px + env(safe-area-inset-bottom)); }
+}
+
+/* ═══════════════════════════════════════════════════
+   RESPONSIVE — Mobile (≤600px)
+═══════════════════════════════════════════════════ */
+@media (max-width:600px) {
+  .section-pad { padding:60px 0; }
+  .section-pad-sm { padding:48px 0; }
+  .container { padding:0 1rem; }
+
+  .hero-inner { padding:1.5rem 1rem; }
+  .hero-badge { font-size:0.65rem; }
+  .hero-btns { flex-direction:column; }
+  .hero-btns .btn { width:100%; }
+  .hero-stat-row { gap:1rem; }
+  .hero-stat .num { font-size:1.4rem; }
+
+  .strip-grid { grid-template-columns:1fr 1fr; }
+  .strip-cell { padding:1.25rem 1rem; }
+  .strip-cell:nth-child(3) { border-right:1px solid var(--border); }
+  .strip-cell:nth-child(4) { border-right:none; }
+
+  .tab-bar { flex-wrap:wrap; border-radius:0; border-left:none; border-right:none; }
+  .tab-btn { flex:0 0 50%; border-right:none !important; border-bottom:1px solid rgba(200,140,20,0.2); font-size:0.72rem; padding:12px 6px; }
+  .tab-btn:nth-child(odd) { border-right:1px solid var(--border) !important; }
+  .tab-btn:nth-last-child(-n+2) { border-bottom:none; }
+
+  .menu-grid { grid-template-columns:1fr; gap:0.85rem; }
+  .menu-card { padding:1.1rem 1.25rem; }
+  .featured-banner { flex-direction:column; text-align:center; padding:1rem; gap:0.5rem; }
+
+  #gallery { grid-template-columns:1fr; grid-template-rows:auto; }
+  .gal-item { height:200px; }
+  .gal-item:first-child { grid-column:auto; height:220px; }
+
+  .offers-grid { grid-template-columns:1fr; }
+  .offer-pill-bar { gap:5px; }
+  .offer-pill { font-size:0.72rem; padding:7px 14px; }
+
+  .party-grid { grid-template-columns:1fr; }
+  .party-card { min-height:280px; }
+
+  .contact-left h2 { font-size:1.6rem; }
+  .contact-btns { flex-direction:column; }
+  .contact-btns .btn { width:100%; }
+  .contact-map { height:240px; }
+
+  .footer-grid { grid-template-columns:1fr; }
+  .footer-grid > div:first-child { grid-column:auto; }
+  .footer-bottom { flex-direction:column; text-align:center; gap:0.5rem; }
+
+  .section-header .t-heading { font-size:1.7rem; }
+}
+
+/* ═══════════════════════════════════════════════════
+   ICON FONT — minimal inline icons
+═══════════════════════════════════════════════════ */
+.icon { display:inline-block; font-style:normal; }
+
+  @media (max-width:768px) {
+    #food-strip > div { height:200px; }
+    #food-strip > div > div:nth-child(3),
+    #food-strip > div > div:nth-child(4) { display:none; }
+    #food-strip > div > div { flex:1 !important; }
+  }
+  @media (max-width:480px) {
+    #food-strip > div { height:160px; }
+    #food-strip > div > div:nth-child(2) { display:none; }
+  }
+
+</style>
+</head>
+<body>
+
+<!-- ═══════ NAVBAR ═══════ -->
+<nav id="navbar">
+  <a href="#hero" class="nav-logo">
+    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+      <path d="M100 20 A80 80 0 0 0 20 100 L100 100 Z" fill="none" stroke="#B8750A" stroke-width="8" stroke-linejoin="round"/>
+      <path d="M20 100 A80 80 0 0 0 100 180 L100 100 Z" fill="none" stroke="#B8750A" stroke-width="8" stroke-linejoin="round"/>
+      <circle cx="62" cy="78" r="7" fill="none" stroke="#B8750A" stroke-width="5"/>
+      <circle cx="76" cy="120" r="9" fill="none" stroke="#B8750A" stroke-width="5"/>
+      <circle cx="52" cy="130" r="5" fill="none" stroke="#B8750A" stroke-width="4"/>
+      <line x1="100" y1="15" x2="100" y2="185" stroke="#6B1020" stroke-width="5"/>
+      <rect x="112" y="62" width="66" height="11" rx="5" fill="none" stroke="#6B1020" stroke-width="6"/>
+      <rect x="112" y="81" width="66" height="8" rx="4" fill="none" stroke="#6B1020" stroke-width="5"/>
+      <path d="M112 96 Q145 110 178 96" fill="none" stroke="#6B1020" stroke-width="5"/>
+      <rect x="112" y="111" width="66" height="8" rx="4" fill="none" stroke="#6B1020" stroke-width="5"/>
+      <rect x="112" y="127" width="66" height="13" rx="6" fill="none" stroke="#6B1020" stroke-width="6"/>
+    </svg>
+    <span class="nav-logo-text">SLICE <em>'N</em> STEAK</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#offers">Deals</a></li>
+    <li><a href="#parties">Parties</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="tel:4438609251" class="btn btn-maroon" style="padding:8px 16px;font-size:0.8rem;">📞 Call Us</a></li>
+    <li><a href="https://order.toasttab.com/online/slice-n-steak-6400-baltimore-national-pike-suite-160b" target="_blank" rel="noopener" class="btn btn-gold" style="padding:8px 16px;font-size:0.8rem;">🛒 Order Online</a></li>
+  </ul>
+  <button class="hamburger" id="hamburgerBtn" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Mobile Drawer -->
+<div class="mobile-drawer" id="mobileDrawer">
+  <a href="#menu" onclick="closeDrawer()">🍽 Menu</a>
+  <a href="#offers" onclick="closeDrawer()">🏷️ Deals & Offers</a>
+  <a href="#parties" onclick="closeDrawer()">🎉 Party Packages</a>
+  <a href="#gallery" onclick="closeDrawer()">📸 Gallery</a>
+  <a href="#contact" onclick="closeDrawer()">📍 Contact & Hours</a>
+  <a href="tel:4438609251" onclick="closeDrawer()">📞 443.860.9251</a>
+  <a href="https://order.toasttab.com/online/slice-n-steak-6400-baltimore-national-pike-suite-160b" target="_blank" rel="noopener" class="drawer-cta">🛒 Order Online Now</a>
+</div>
+
+<!-- ═══════ HERO ═══════ -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-gradient"></div>
+  <div class="hero-inner">
+    <div class="hero-text">
+      <div class="hero-badge">📍 Catonsville, MD</div>
+      <h1 class="hero-title">
+        Ribeye<br>
+        Cheesesteak.<br>
+        <span class="accent">NY Style</span> Pizza.
+      </h1>
+      <p class="hero-desc">100% Ribeye with Cooper Sharp cheese, New York style fresh dough pizza, and bold Indo-Italian fusion — all under one roof.</p>
+      <div class="hero-btns">
+        <a href="https://order.toasttab.com/online/slice-n-steak-6400-baltimore-national-pike-suite-160b" target="_blank" rel="noopener" class="btn btn-gold">🛒 Order Online</a>
+        <a href="#menu" class="btn btn-outline-white">Explore Menu</a>
+        <a href="tel:4438609251" class="btn btn-outline-white">📞 443.860.9251</a>
+      </div>
+      <div class="hero-stat-row">
+        <div class="hero-stat"><span class="num">100%</span><span class="label">Real Ribeye</span></div>
+        <div class="hero-stat"><span class="num">20+</span><span class="label">Wing Sauces</span></div>
+        <div class="hero-stat"><span class="num">30+</span><span class="label">Menu Items</span></div>
+      </div>
+    </div>
+    <div class="hero-img-col">
+      <div style="position:relative;">
+        <img class="hero-img-main" src="images/hero-ribeye-12in.jpg" alt="Ribeye Cheesesteak — loaded with Cooper Sharp">
+        <img class="hero-img-float" src="images/hero-indo-pizza.jpg" alt="Indo-Italian Fusion Pizza">
+        <div class="hero-chip">
+          <span class="cn">★★★★★</span>
+          <span class="cl">Cooper Sharp</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ STRIP ═══════ -->
+<div id="strip">
+  <div class="strip-grid">
+    <div class="strip-cell">
+      <div class="strip-icon">🥩</div>
+      <div class="strip-label">100% Ribeye</div>
+      <div class="strip-sub">Cooper Sharp Cheese</div>
+    </div>
+    <div class="strip-cell">
+      <div class="strip-icon">🍕</div>
+      <div class="strip-label">NY Fresh Dough</div>
+      <div class="strip-sub">Indo-Italian Fusion</div>
+    </div>
+    <div class="strip-cell">
+      <div class="strip-icon">🕙</div>
+      <div class="strip-label">Open Daily</div>
+      <div class="strip-sub">Mon–Sat 10:30am–10:30pm</div>
+    </div>
+    <div class="strip-cell">
+      <div class="strip-icon">🛵</div>
+      <div class="strip-label">Delivery & Pickup</div>
+      <div class="strip-sub">$11 minimum for delivery</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ SHOWCASE ═══════ -->
+<div id="showcase">
+  <div class="sc-panel">
+    <img src="images/hero-philly-steak.jpg" alt="Philly Ribeye Cheesesteak">
+    <div class="sc-overlay">
+      <div class="sc-tag">Signature</div>
+      <div class="sc-name">Ribeye<br>Cheesesteak</div>
+      <p class="sc-desc">100% Ribeye, Cooper Sharp cheese — the Philadelphia gold standard.</p>
+    </div>
+  </div>
+  <div class="sc-panel">
+    <img src="images/hero-indo-pizza.jpg" alt="Indo-Italian Fusion Pizza">
+    <div class="sc-overlay">
+      <div class="sc-tag">Fresh Daily</div>
+      <div class="sc-name">New York<br>Style Pizza</div>
+      <p class="sc-desc">Classic NY dough + bold Indo-Italian flavors. Butter Chicken, Paneer Tikka & more.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ MENU ═══════ -->
+<section id="menu">
+  <div class="container section-pad">
+    <div class="section-header">
+      <span class="t-eyebrow">What We Serve</span>
+      <h2 class="t-heading" style="font-size:clamp(1.8rem,4vw,3rem);">Our Full Menu</h2>
+      <div class="divider"><span class="divider-icon">🍽</span></div>
+    </div>
+
+    <div class="tab-bar">
+      <button class="tab-btn active" onclick="switchTab('ribeye')">Ribeye Cheesesteak</button>
+      <button class="tab-btn" onclick="switchTab('nypizza')">NY Pizza</button>
+      <button class="tab-btn" onclick="switchTab('indo')">Indo-Italian</button>
+      <button class="tab-btn" onclick="switchTab('wings')">Wings</button>
+      <button class="tab-btn" onclick="switchTab('subs')">Subs & Sands</button>
+      <button class="tab-btn" onclick="switchTab('sides')">Sides & More</button>
+    </div>
+
+    <!-- ── RIBEYE CHEESESTEAK ── -->
+    <div class="tab-panel active" id="tab-ribeye">
+      <div class="featured-banner">
+        <div class="fb-icon">🥩</div>
+        <div class="fb-text">
+          <h3>All Cheesesteaks are 100% Ribeye</h3>
+          <p>We use Cooper Sharp cheese — the gold standard. Available Sm 8" or Lg 12" hoagies.</p>
+        </div>
+      </div>
+      <div class="menu-grid">
+        <div class="menu-card fade-up"><div class="mc-name">OG Cheesesteak</div><div class="mc-desc">Ribeye, Cooper Sharp White American Cheese, Grilled Onion</div><div class="mc-prices"><span class="price-tag"><span class="sz">8"</span>$11.99</span><span class="price-tag"><span class="sz">12"</span>$16.99</span></div></div>
+        <div class="menu-card fade-up"><div class="mc-name">Philly Cheesesteak</div><div class="mc-desc">Ribeye, Cheese Whiz, Grilled Onion, Grilled Green Pepper, Grilled Mushroom</div><div class="mc-prices"><span class="price-tag"><span class="sz">8"</span>$12.99</span><span class="price-tag"><span class="sz">12"</span>$17.99</span></div></div>
+        <div class="menu-card fade-up"><div class="mc-name">Shrimp Cheesesteak</div><div class="mc-desc">Ribeye, Grilled Shrimp, Cooper Sharp White American Cheese, Grilled Onion</div><div class="mc-prices"><span class="price-tag"><span class="sz">8"</span>$12.99</span><span class="price-tag"><span class="sz">12"</span>$17.99</span></div></div>
+        <div class="menu-card fade-up"><div class="mc-name">Loaded Submarine</div><div class="mc-desc">Double Ribeye, Cooper Sharp White American, Green Pepper, Grilled Onion, Mushroom</div><div class="mc-prices"><span class="price-tag"><span class="sz">8"</span>$14.99</span><span class="price-tag"><span class="sz">12"</span>$19.99</span></div></div>
+        <div class="menu-card fade-up"><div class="mc-name">Egg & Cheesesteak</div><div class="mc-desc">Fried Egg, Ribeye, Grilled Onion, Cooper Sharp</div><div class="mc-prices"><span class="price-tag"><span class="sz">8"</span>$12.99</span><span class="price-tag"><span class="sz">12"</span>$16.99</span></div></div>
+        <div class="menu-card fade-up"><div class="mc-name">Pizza Cheesesteak</div><div class="mc-desc">Ribeye, Pizza Sauce, Grilled Onion, Pizza Cheese</div><div class="mc-prices"><span class="price-tag"><span class="sz">8"</span>$12.99</span><span class="price-tag"><span class="sz">12"</span>$17.99</span></div></div>
+        <div class="menu-card fade-up"><div class="mc-name">Italian Cheesesteak</div><div class="mc-desc">Ribeye, Green Pepper, Mushroom, Grilled Onion, Marinara Sauce, Cooper Sharp</div><div class="mc-prices"><span class="price-tag"><span class="sz">8"</span>$12.99</span><span class="price-tag"><span class="sz">12"</span>$17.99</span></div></div>
+        <div class="menu-card fade-up"><div class="mc-name">Cheez Wiz Cheesesteak</div><div class="mc-desc">Ribeye, Cheez Wiz, Grilled Onion</div><div class="mc-prices"><span class="price-tag"><span class="sz">8"</span>$11.99</span><span class="price-tag"><span class="sz">12"</span>$16.99</span></div></div>
+      </div>
+      <div class="menu-sub-title">Chicken Cheesesteaks</div>
+      <div class="menu-grid">
+        <div class="menu-card fade-up"><div class="mc-name">Traditional Chicken Cheesesteak</div><div class="mc-desc">Chicken, Cooper Sharp White American Cheese, Grilled Onion</div><div class="mc-prices"><span class="price-tag"><span class="sz">8"</span>$10.99</span><span class="price-tag"><span class="sz">12"</span>$15.99</span></div></div>
+        <div class="menu-card fade-up"><div class="mc-name">Italian Chicken Cheesesteak</div><div class="mc-desc">Chicken, Green Pepper, Mushroom, Grilled Onion, Marinara Sauce, Cooper Sharp</div><div class="mc-prices"><span class="price-tag"><span class="sz">8"</span>$11.99</span><span class="price-tag"><span class="sz">12"</span>$16.99</span></div></div>
+        <div class="menu-card fade-up"><div class="mc-name">Chicken Bacon Ranch</div><div class="mc-desc">Chicken, Bacon Ranch, Grilled Onion, Cooper Sharp White American Cheese</div><div class="mc-prices"><span class="price-tag"><span class="sz">8"</span>$11.99</span><span class="price-tag"><span class="sz">12"</span>$16.99</span></div></div>
+        <div class="menu-card fade-up"><div class="mc-name">Buffalo Chicken Cheesesteak</div><div class="mc-desc">Chicken, Buffalo Sauce, Ranch, Grilled Onion, Cooper Sharp American Cheese</div><div class="mc-prices"><span class="price-tag"><span class="sz">8"</span>$11.99</span><span class="price-tag"><span class="sz">12"</span>$16.99</span></div></div>
+        <div class="menu-card fade-up"><div class="mc-name">Shrimp Chicken Cheesesteak</div><div class="mc-desc">Grilled Shrimp, Chicken, Grilled Onion, Cooper Sharp White American</div><div class="mc-prices"><span class="price-tag"><span class="sz">8"</span>$11.99</span><span class="price-tag"><span class="sz">12"</span>$16.99</span></div></div>
+      </div>
+      <div class="addons-note"><strong>Add-ons:</strong> Lettuce, Tomatoes, Hot Pepper, Onion, Pickles, Mayo, Mushroom (+$1), Green Peppers (+$1), Sweet/Banana Peppers (+$1), Jalapeño (+$1), Bacon (+$2.99), Extra Cheese (+$1.99), Extra Meat (+$4.99)</div>
+    </div>
+
+    <!-- ── NY PIZZA ── -->
+    <div class="tab-panel" id="tab-nypizza">
+      <div class="featured-banner">
+        <div class="fb-icon">🍕</div>
+        <div class="fb-text">
+          <h3>New York Style Fresh Dough Pizza</h3>
+          <p>Available 12", 14", and 16". Thin crust & pan also available. Toppings $1.50–$2.50 each.</p>
+        </div>
+      </div>
+      <div class="menu-grid">
+        <div class="menu-card fade-up"><div class="mc-name">Cheese</div><div class="mc-desc">Red Pizza Sauce, Blended Pizza Cheese</div><div class="mc-prices"><span class="price-tag"><span class="sz">12"</span>$10.99</span><span class="price-tag"><span class="sz">14"</span>$12.99</span><span class="price-tag"><span class="sz">16"</span>$14.99</span></div></div>
+        <div class="menu-card fade-up"><div class="mc-name">Hawaiian</div><div class="mc-desc">Red Pizza Sauce, Ham, Pineapple, Blended Pizza Cheese</div><div class="mc-prices"><span class="price-tag"><span class="sz">12"</span>$15.99</span><span class="price-tag"><span class="sz">14"</span>$18.99</span><span class="price-tag"><span class="sz">16"</span>$21.99</span></div></div>
+        <div class="menu-card fade-up"><div class="mc-name">Meat Lovers</div><div class="mc-desc">Red Pizza Sauce, Pepperoni, Sausage, Ground Beef, Bacon, Ham</div><div class="mc-prices"><span class="price-tag"><span class="sz">12"</span>$15.99</span><span class="price-tag"><span class="sz">14"</span>$18.99</span><span class="price-tag"><span class="sz">16"</span>$21.99</span></div></div>
+        <div class="menu-card fade-up"><div class="mc-name">Full House</div><div class="mc-desc">Red Sauce, Sausage, Ground Beef, Pepperoni, Green Pepper, Mushroom, Black Olives, Onion</div><div class="mc-prices"><span class="price-tag"><span class="sz">12"</span>$15.99</span><span class="price-tag"><span class="sz">14"</span>$18.99</span><span class="price-tag"><span class="sz">16"</span>$21.99</span></div></div>
+        <div class="menu-card fade-up"><div class="mc-name">Alfredo Grilled Chicken</div><div class="mc-desc">Alfredo White Sauce, Grilled Chicken, Blended Pizza Cheese</div><div class="mc-prices"><span class="price-tag"><span class="sz">12"</span>$15.99</span><span class="price-tag"><span class="sz">14"</span>$18.99</span><span class="price-tag"><span class="sz">16"</span>$21.99</span></div></div>
+        <div class="menu-card fade-up"><div class="mc-name">Italian White Chicken</div><div class="mc-desc">Garlic White Sauce, Chicken, Tomato, Broccoli, Ricotta Cheese</div><div class="mc-prices"><span class="price-tag"><span class="sz">12"</span>$15.99</span><span class="price-tag"><span class="sz">14"</span>$18.99</span><span class="price-tag"><span class="sz">16"</span>$21.99</span></div></div>
+        <div class="menu-card fade-up"><div class="mc-name">Cheeseburger Bacon</div><div class="mc-desc">Red Pizza Sauce, Cheeseburger, Bacon, Cheddar, Blended Pizza Cheese</div><div class="mc-prices"><span class="price-tag"><span class="sz">12"</span>$15.99</span><span class="price-tag"><span class="sz">14"</span>$18.99</span><span class="price-tag"><span class="sz">16"</span>$21.99</span></div></div>
+        <div class="menu-card fade-up"><div class="mc-name">Buffalo Chicken</div><div class="mc-desc">Hot Sauce, Ranch, Chicken, Red Onion, Blended Pizza Cheese</div><div class="mc-prices"><span class="price-tag"><span class="sz">12"</span>$15.99</span><span class="price-tag"><span class="sz">14"</span>$18.99</span><span class="price-tag"><span class="sz">16"</span>$21.99</span></div></div>
+        <div class="menu-card fade-up"><div class="mc-name">Philly Ribeye Cheesesteak</div><div class="mc-desc">Red Pizza Sauce, Ribeye, Green Pepper, Mushroom, Grilled Onion</div><div class="mc-prices"><span class="price-tag"><span class="sz">12"</span>$15.99</span><span class="price-tag"><span class="sz">14"</span>$18.99</span><span class="price-tag"><span class="sz">16"</span>$21.99</span></div></div>
+        <div class="menu-card fade-up"><div class="mc-name">Barbecue Chicken</div><div class="mc-desc">Barbecue Sauce, Chicken, Onion, Bacon, Blended Pizza Cheese</div><div class="mc-prices"><span class="price-tag"><span class="sz">12"</span>$15.99</span><span class="price-tag"><span class="sz">14"</span>$18.99</span><span class="price-tag"><span class="sz">16"</span>$21.99</span></div></div>
+        <div class="menu-card fade-up"><div class="mc-name">Garlic Ranch Chicken</div><div class="mc-desc">Garlic White Sauce, Grilled Chicken, Tomato, Ranch, Bacon</div><div class="mc-prices"><span class="price-tag"><span class="sz">12"</span>$15.99</span><span class="price-tag"><span class="sz">14"</span>$18.99</span><span class="price-tag"><span class="sz">16"</span>$21.99</span></div></div>
+        <div class="menu-card fade-up"><div class="mc-name">Boom Boom Chicken</div><div class="mc-desc">Boom Boom Sauce, Chicken, Red Onion, Blended Pizza Cheese</div><div class="mc-prices"><span class="price-tag"><span class="sz">12"</span>$15.99</span><span class="price-tag"><span class="sz">14"</span>$18.99</span><span class="price-tag"><span class="sz">16"</span>$21.99</span></div></div>
+        <div class="menu-card fade-up"><div class="mc-name">Spinach White Pizza</div><div class="mc-desc">Garlic White Sauce, Spinach, Ricotta Cheese, Three Blended Cheese</div><div class="mc-prices"><span class="price-tag"><span class="sz">12"</span>$15.99</span><span class="price-tag"><span class="sz">14"</span>$18.99</span><span class="price-tag"><span class="sz">16"</span>$21.99</span></div></div>
+        <div class="menu-card fade-up"><div class="mc-name">Avocado Ranch</div><div class="mc-desc">Garlic White Sauce, Grilled Chicken, Ranch, Onion</div><div class="mc-prices"><span class="price-tag"><span class="sz">12"</span>$15.99</span><span class="price-tag"><span class="sz">14"</span>$18.99</span><span class="price-tag"><span class="sz">16"</span>$21.99</span></div></div>
+        <div class="menu-card fade-up"><div class="mc-name">Veggie</div><div class="mc-desc">Red Sauce, Green Pepper, Onion, Mushroom, Black Olives, Tomato</div><div class="mc-prices"><span class="price-tag"><span class="sz">12"</span>$15.99</span><span class="price-tag"><span class="sz">14"</span>$18.99</span><span class="price-tag"><span class="sz">16"</span>$21.99</span></div></div>
+      </div>
+      <div class="addons-note"><strong>Toppings:</strong> $1.50/2.00/2.50 — Pepperoni, Sausage, Bacon, Ground Beef, Chicken, Ham, Green Peppers, Tomatoes, Black Olives, Pineapple, Mushrooms, Broccoli, Spinach, Banana Peppers, Jalapeños &nbsp;|&nbsp; <strong>Special Toppings:</strong> $2.50/3.50/4.50 — Chicken, Steak, Feta Cheese</div>
+    </div>
+
+    <!-- ── INDO-ITALIAN ── -->
+    <div class="tab-panel" id="tab-indo">
+      <div class="featured-banner">
+        <div class="fb-icon">🌶️</div>
+        <div class="fb-text">
+          <h3>Inspired by Chef — Indo-Italian Pizza</h3>
+          <p>Bold Indian flavors on fresh NY dough. All at $16.99 / $19.99 / $22.99 (12"/14"/16")</p>
+        </div>
+      </div>
+      <div class="menu-grid">
+        <div class="menu-card fade-up"><div class="mc-name">Butter Chicken</div><div class="mc-desc">Butter Chicken, Onion, Jalapeño and Cilantro</div><div class="mc-prices"><span class="price-tag"><span class="sz">12"</span>$16.99</span><span class="price-tag"><span class="sz">14"</span>$19.99</span><span class="price-tag"><span class="sz">16"</span>$22.99</span></div></div>
+        <div class="menu-card fade-up"><div class="mc-name">Chicken Tikka</div><div class="mc-desc">Onions, Green Peppers, Cilantro and Chicken</div><div class="mc-prices"><span class="price-tag"><span class="sz">12"</span>$16.99</span><span class="price-tag"><span class="sz">14"</span>$19.99</span><span class="price-tag"><span class="sz">16"</span>$22.99</span></div></div>
+        <div class="menu-card fade-up"><div class="mc-name">Paneer Tikka</div><div class="mc-desc">Onion, Green Peppers, Cilantro and Paneer</div><div class="mc-prices"><span class="price-tag"><span class="sz">12"</span>$16.99</span><span class="price-tag"><span class="sz">14"</span>$19.99</span><span class="price-tag"><span class="sz">16"</span>$22.99</span></div></div>
+        <div class="menu-card fade-up"><div class="mc-name">Spicy Chicken</div><div class="mc-desc">Onions, Jalapeños, Cilantro, Green Chilly and Chicken</div><div class="mc-prices"><span class="price-tag"><span class="sz">12"</span>$16.99</span><span class="price-tag"><span class="sz">14"</span>$19.99</span><span class="price-tag"><span class="sz">16"</span>$22.99</span></div></div>
+        <div class="menu-card fade-up"><div class="mc-name">Spicy Paneer</div><div class="mc-desc">Onions, Jalapeños, Cilantro, Green Chilly and Paneer</div><div class="mc-prices"><span class="price-tag"><span class="sz">12"</span>$16.99</span><span class="price-tag"><span class="sz">14"</span>$19.99</span><span class="price-tag"><span class="sz">16"</span>$22.99</span></div></div>
+        <div class="menu-card fade-up"><div class="mc-name">Indo-Veggie</div><div class="mc-desc">Onions, Jalapeño, Green Pepper, Broccoli and Cilantro</div><div class="mc-prices"><span class="price-tag"><span class="sz">12"</span>$16.99</span><span class="price-tag"><span class="sz">14"</span>$19.99</span><span class="price-tag"><span class="sz">16"</span>$22.99</span></div></div>
+        <div class="menu-card fade-up"><div class="mc-name">Spicy Fusion</div><div class="mc-desc">Onion, Jalapeño, Green Chilly, Pineapple, Cilantro and Spicy Chicken</div><div class="mc-prices"><span class="price-tag"><span class="sz">12"</span>$16.99</span><span class="price-tag"><span class="sz">14"</span>$19.99</span><span class="price-tag"><span class="sz">16"</span>$22.99</span></div></div>
+      </div>
+      <div class="menu-sub-title">Indo-Spiced Wings</div>
+      <div class="menu-grid">
+        <div class="menu-card fade-up"><div class="mc-name">Spicy Fusion Wings</div><div class="mc-desc">Bold Indian-spiced fusion flavor</div><div class="mc-prices"><span class="price-tag"><span class="sz">6pc</span>$9.99</span><span class="price-tag"><span class="sz">12pc</span>$17.99</span><span class="price-tag"><span class="sz">18pc</span>$28.99</span></div></div>
+        <div class="menu-card fade-up"><div class="mc-name">Wings w/ Tandoori Flavor</div><div class="mc-desc">Classic wings with authentic Tandoori spice blend</div><div class="mc-prices"><span class="price-tag"><span class="sz">6pc</span>$9.99</span><span class="price-tag"><span class="sz">12pc</span>$17.99</span><span class="price-tag"><span class="sz">18pc</span>$28.99</span></div></div>
+      </div>
+    </div>
+
+    <!-- ── WINGS ── -->
+    <div class="tab-panel" id="tab-wings">
+      <div class="featured-banner">
+        <div class="fb-icon">🍗</div>
+        <div class="fb-text"><h3>Wings & Tenders — 20+ Sauces</h3><p>Served with Blue Cheese or Ranch. Add fries for $2.00.</p></div>
+      </div>
+      <div class="menu-grid">
+        <div class="menu-card fade-up"><div class="mc-name">Party Wings</div><div class="mc-desc">Classic wings. Blue Cheese or Ranch.</div><div class="mc-prices"><span class="price-tag"><span class="sz">6pc</span>$8.99</span><span class="price-tag"><span class="sz">12pc</span>$17.99</span><span class="price-tag"><span class="sz">18pc</span>$27.99</span></div></div>
+        <div class="menu-card fade-up"><div class="mc-name">Boneless Wings</div><div class="mc-desc">Boneless chicken wings — choose your sauce.</div><div class="mc-prices"><span class="price-tag"><span class="sz">6pc</span>$8.99</span><span class="price-tag"><span class="sz">12pc</span>$17.99</span><span class="price-tag"><span class="sz">18pc</span>$27.99</span></div></div>
+        <div class="menu-card fade-up"><div class="mc-name">Whole Wings</div><div class="mc-desc">Full whole wings. Add fries $2.00.</div><div class="mc-prices"><span class="price-tag"><span class="sz">3pc</span>$8.99</span><span class="price-tag"><span class="sz">6pc</span>$17.99</span><span class="price-tag"><span class="sz">9pc</span>$26.99</span></div></div>
+        <div class="menu-card fade-up"><div class="mc-name">Tenders</div><div class="mc-desc">Crispy chicken tenders. Add fries $2.00.</div><div class="mc-prices"><span class="price-tag"><span class="sz">3pc</span>$6.99</span><span class="price-tag"><span class="sz">6pc</span>$13.99</span><span class="price-tag"><span class="sz">9pc</span>$20.99</span></div></div>
+      </div>
+      <div class="menu-sub-title">Pick Your Sauce</div>
+      <div class="flavor-wrap">
+        <span class="flavor-chip">Sweet Chili</span><span class="flavor-chip">Honey Garlic</span><span class="flavor-chip">Hot Garlic</span><span class="flavor-chip">Honey Mustard</span><span class="flavor-chip">Mild Buffalo</span><span class="flavor-chip">Hot Buffalo</span><span class="flavor-chip">Garlic Parmesan</span><span class="flavor-chip">Mango Habanero</span><span class="flavor-chip">Thai Curry</span><span class="flavor-chip">Jerk Caribbean</span><span class="flavor-chip">Orange</span><span class="flavor-chip">Honey BBQ</span><span class="flavor-chip">Regular BBQ</span><span class="flavor-chip">Golden BBQ</span><span class="flavor-chip">Korean BBQ</span><span class="flavor-chip">Cajun</span><span class="flavor-chip">Lemon Pepper</span><span class="flavor-chip">Old Bay</span><span class="flavor-chip">Teriyaki</span><span class="flavor-chip">Louisiana Hot</span><span class="flavor-chip">Boom Boom</span>
+      </div>
+    </div>
+
+    <!-- ── SUBS ── -->
+    <div class="tab-panel" id="tab-subs">
+      <div class="menu-sub-title" style="margin-top:0;">Spicy Subs</div>
+      <div class="menu-grid">
+        <div class="menu-card fade-up"><div class="mc-name">Spicy Grilled Chicken Sub</div><div class="mc-desc">Spicy Mayo, Lettuce, Tomato, Onion and Cheese</div><div class="mc-price-single">$12.99</div></div>
+        <div class="menu-card fade-up"><div class="mc-name">Spicy Crispy Chicken Sub</div><div class="mc-desc">Spicy Mayo, Lettuce, Tomato, Onion and Cheese</div><div class="mc-price-single">$12.99</div></div>
+        <div class="menu-card fade-up"><div class="mc-name">Spicy Chicken Cheesesteak</div><div class="mc-desc">Spicy Mayo, Onion, Created Chili Pepper and Cilantro</div><div class="mc-price-single">$12.99</div></div>
+        <div class="menu-card fade-up"><div class="mc-name">Spicy Avocado Veggie Sub</div><div class="mc-desc">Spicy Mayo, Avocado Ranch, Onion, Green Pepper, Tomato, Mushroom, Olives, Lettuce, Cilantro and Cheese</div><div class="mc-price-single">$12.99</div></div>
+        <div class="menu-card fade-up"><div class="mc-name">Chicken Tikka Sub</div><div class="mc-desc">Grilled Chicken, Spicy Mayo, Green Pepper, Onion, Cilantro and Cheese</div><div class="mc-price-single">$12.99</div></div>
+        <div class="menu-card fade-up"><div class="mc-name">Egg Bhurji Sub</div><div class="mc-desc">Eggs, Green Pepper, Onion, Indian Spices, Cheese and Cilantro</div><div class="mc-price-single">$12.99</div></div>
+      </div>
+      <div class="menu-sub-title">Sandwiches <span style="font-size:0.8rem;font-weight:400;color:var(--text-light);letter-spacing:0;">(Add Fries $2.00)</span></div>
+      <div class="menu-grid">
+        <div class="menu-card fade-up"><div class="mc-name">Double Cheeseburger</div><div class="mc-price-single">$9.99</div></div>
+        <div class="menu-card fade-up"><div class="mc-name">Crispy Chicken Sandwich</div><div class="mc-price-single">$9.99</div></div>
+        <div class="menu-card fade-up"><div class="mc-name">Philly Style Cheeseburger</div><div class="mc-desc">Green Peppers, Mushrooms, Grilled Onions, Meat and Cheez Whiz</div><div class="mc-price-single">$9.99</div></div>
+        <div class="menu-card fade-up"><div class="mc-name">Chicken Bacon Ranch</div><div class="mc-desc">Chicken, Bacon, Ranch, Lettuce, Tomatoes and American Cheese</div><div class="mc-price-single">$9.99</div></div>
+        <div class="menu-card fade-up"><div class="mc-name">Grilled Chicken</div><div class="mc-price-single">$9.99</div></div>
+        <div class="menu-card fade-up"><div class="mc-name">Cheese Fish</div><div class="mc-desc">American Cheese</div><div class="mc-price-single">$9.99</div></div>
+        <div class="menu-card fade-up"><div class="mc-name">Bacon Cheeseburger</div><div class="mc-price-single">$10.99</div></div>
+        <div class="menu-card fade-up"><div class="mc-name">Buffalo Crispy Chicken</div><div class="mc-desc">Chicken, Lettuce, Tomato, Buffalo Sauce, Ranch and American Cheese</div><div class="mc-price-single">$9.99</div></div>
+      </div>
+      <div class="menu-sub-title">Deli Subs</div>
+      <div class="menu-grid">
+        <div class="menu-card fade-up"><div class="mc-name">Turkey and Cheese</div><div class="mc-prices"><span class="price-tag"><span class="sz">8"</span>$11.99</span><span class="price-tag"><span class="sz">12"</span>$16.99</span></div></div>
+        <div class="menu-card fade-up"><div class="mc-name">Ham and Cheese</div><div class="mc-prices"><span class="price-tag"><span class="sz">8"</span>$11.99</span><span class="price-tag"><span class="sz">12"</span>$16.99</span></div></div>
+      </div>
+    </div>
+
+    <!-- ── SIDES ── -->
+    <div class="tab-panel" id="tab-sides">
+      <div class="menu-sub-title" style="margin-top:0;">Appetizers</div>
+      <div class="menu-grid">
+        <div class="menu-card fade-up"><div class="mc-name">Regular Fries</div><div class="mc-price-single">$3.99</div></div>
+        <div class="menu-card fade-up"><div class="mc-name">Mozzarella Sticks</div><div class="mc-price-single">$7.99</div></div>
+        <div class="menu-card fade-up"><div class="mc-name">Jalapeño Poppers</div><div class="mc-price-single">$7.99</div></div>
+        <div class="menu-card fade-up"><div class="mc-name">Garlic Bread with Cheese</div><div class="mc-price-single">$4.99</div></div>
+        <div class="menu-card fade-up"><div class="mc-name">Cheese Sticks</div><div class="mc-price-single">$4.99</div></div>
+        <div class="menu-card fade-up"><div class="mc-name">Gravy Fries</div><div class="mc-price-single">$5.99</div></div>
+        <div class="menu-card fade-up"><div class="mc-name">Cheese Fries</div><div class="mc-price-single">$5.99</div></div>
+        <div class="menu-card fade-up"><div class="mc-name">Lemon Fries</div><div class="mc-price-single">$5.99</div></div>
+        <div class="menu-card fade-up"><div class="mc-name">Onion Rings</div><div class="mc-price-single">$4.99</div></div>
+        <div class="menu-card fade-up"><div class="mc-name">Bacon Cheese Fries</div><div class="mc-price-single">$6.99</div></div>
+        <div class="menu-card fade-up"><div class="mc-name">Mexican Fries</div><div class="mc-price-single">$6.99</div></div>
+        <div class="menu-card fade-up"><div class="mc-name">Steak and Cheese Fries</div><div class="mc-price-single">$9.99</div></div>
+      </div>
+      <div class="menu-sub-title">Sides</div>
+      <div class="menu-grid">
+        <div class="menu-card fade-up"><div class="mc-name">Loaded Fries</div><div class="mc-price-single">$7.99</div></div>
+        <div class="menu-card fade-up"><div class="mc-name">Omelet</div><div class="mc-price-single">$7.99</div></div>
+        <div class="menu-card fade-up"><div class="mc-name">Chili Chicken Fries</div><div class="mc-price-single">$10.99</div></div>
+        <div class="menu-card fade-up"><div class="mc-name">Spicy Garlic Bread</div><div class="mc-price-single">$6.99</div></div>
+      </div>
+      <div class="menu-sub-title">Salads</div>
+      <div class="menu-grid">
+        <div class="menu-card fade-up"><div class="mc-name">Garden Salad</div><div class="mc-price-single">$8.99</div></div>
+        <div class="menu-card fade-up"><div class="mc-name">Greek Salad</div><div class="mc-price-single">$10.99</div></div>
+        <div class="menu-card fade-up"><div class="mc-name">Grilled Chicken Salad</div><div class="mc-price-single">$12.99</div></div>
+        <div class="menu-card fade-up"><div class="mc-name">Crispy Chicken Salad</div><div class="mc-price-single">$12.99</div></div>
+        <div class="menu-card fade-up"><div class="mc-name">Buffalo Grilled Chicken Salad</div><div class="mc-price-single">$12.99</div></div>
+        <div class="menu-card fade-up"><div class="mc-name">Buffalo Crispy Chicken Salad</div><div class="mc-price-single">$12.99</div></div>
+      </div>
+      <div class="menu-sub-title">Kids Menu</div>
+      <div class="menu-grid">
+        <div class="menu-card fade-up"><div class="mc-name">10" Cheese Pizza</div><div class="mc-price-single">$9.99</div></div>
+        <div class="menu-card fade-up"><div class="mc-name">6-Piece Chicken Nuggets with Fries</div><div class="mc-price-single">$9.99</div></div>
+      </div>
+      <div class="menu-sub-title">Drinks</div>
+      <div class="menu-grid">
+        <div class="menu-card fade-up"><div class="mc-name">20 oz Soft Drink</div><div class="mc-price-single">$2.99</div></div>
+        <div class="menu-card fade-up"><div class="mc-name">12 oz Can</div><div class="mc-price-single">$1.49</div></div>
+        <div class="menu-card fade-up"><div class="mc-name">2 Liter</div><div class="mc-price-single">$3.99</div></div>
+        <div class="menu-card fade-up"><div class="mc-name">Juice</div><div class="mc-price-single">$2.99</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════ FOOD PHOTO STRIP ═══════ -->
+<div id="food-strip" style="background:#3E2908;padding:0;overflow:hidden;">
+  <div style="display:flex;height:320px;gap:3px;">
+    <div style="flex:1.4;overflow:hidden;position:relative;min-width:0;">
+      <img src="images/hero-ribeye-loaded.jpg" alt="Loaded Ribeye Cheesesteak"
+           style="width:100%;height:100%;object-fit:cover;transition:transform 0.5s;"
+           onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+      <div style="position:absolute;bottom:0;left:0;right:0;padding:1rem 1.25rem;
+                  background:linear-gradient(to top,rgba(10,4,2,0.85),transparent);">
+        <span style="font-family:'Oswald',sans-serif;font-size:0.68rem;letter-spacing:2px;
+                     text-transform:uppercase;color:#D4920E;">Loaded Ribeye</span>
+      </div>
+    </div>
+    <div style="flex:1;overflow:hidden;position:relative;min-width:0;">
+      <img src="images/hero-philly-steak.jpg" alt="Philly Cheesesteak"
+           style="width:100%;height:100%;object-fit:cover;transition:transform 0.5s;"
+           onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+      <div style="position:absolute;bottom:0;left:0;right:0;padding:1rem 1.25rem;
+                  background:linear-gradient(to top,rgba(10,4,2,0.85),transparent);">
+        <span style="font-family:'Oswald',sans-serif;font-size:0.68rem;letter-spacing:2px;
+                     text-transform:uppercase;color:#D4920E;">Philly Cheesesteak</span>
+      </div>
+    </div>
+    <div style="flex:1;overflow:hidden;position:relative;min-width:0;">
+      <img src="images/hero-chicken-sub.jpg" alt="Chicken Cheesesteak Sub"
+           style="width:100%;height:100%;object-fit:cover;transition:transform 0.5s;"
+           onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+      <div style="position:absolute;bottom:0;left:0;right:0;padding:1rem 1.25rem;
+                  background:linear-gradient(to top,rgba(10,4,2,0.85),transparent);">
+        <span style="font-family:'Oswald',sans-serif;font-size:0.68rem;letter-spacing:2px;
+                     text-transform:uppercase;color:#D4920E;">Chicken Cheesesteak</span>
+      </div>
+    </div>
+    <div style="flex:1.2;overflow:hidden;position:relative;min-width:0;">
+      <img src="images/hero-indo-pizza.jpg" alt="Indo-Italian Fusion Pizza"
+           style="width:100%;height:100%;object-fit:cover;transition:transform 0.5s;"
+           onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+      <div style="position:absolute;bottom:0;left:0;right:0;padding:1rem 1.25rem;
+                  background:linear-gradient(to top,rgba(10,4,2,0.85),transparent);">
+        <span style="font-family:'Oswald',sans-serif;font-size:0.68rem;letter-spacing:2px;
+                     text-transform:uppercase;color:#D4920E;">Indo-Italian Pizza</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ GALLERY ═══════ -->
+<div id="gallery">
+  <div class="gal-item"><img src="images/hero-ribeye-loaded.jpg" alt="Ribeye Cheesesteak"><span class="gal-label">Loaded Ribeye</span></div>
+  <div class="gal-item"><img src="images/hero-indo-pizza.jpg" alt="Indo-Italian Pizza"><span class="gal-label">Indo-Italian Pizza</span></div>
+  <div class="gal-item"><img src="images/hero-chicken-sub.jpg" alt="Chicken Cheesesteak Sub"><span class="gal-label">Chicken Cheesesteak</span></div>
+  <div class="gal-item"><img src="images/hero-philly-steak.jpg" alt="Philly Cheesesteak"><span class="gal-label">Philly Cheesesteak</span></div>
+  <div class="gal-item"><img src="images/hero-ribeye-12in.jpg" alt="Ribeye Cheesesteak"><span class="gal-label">Fresh Dough Daily</span></div>
+</div>
+
+<!-- ═══════ OFFERS ═══════ -->
+<section id="offers">
+  <div class="container section-pad">
+    <div class="section-header">
+      <span class="t-eyebrow">Save More</span>
+      <h2 class="t-heading" style="font-size:clamp(1.8rem,4vw,3rem);">Deals & Offers</h2>
+      <div class="divider"><span class="divider-icon">🏷️</span></div>
+    </div>
+    <div class="offer-config">
+      <span>⚙️</span>
+      <span><strong style="color:#8B5E00;">Configurable Offers:</strong> Select a tab to view deals by day type. Update each panel to reflect current promotions.</span>
+    </div>
+    <div class="offer-pill-bar">
+      <button class="offer-pill active" onclick="switchOffer('everyday')">Everyday</button>
+      <button class="offer-pill" onclick="switchOffer('weekday')">Weekdays</button>
+      <button class="offer-pill" onclick="switchOffer('weekend')">Weekends</button>
+      <button class="offer-pill" onclick="switchOffer('holiday')">Holidays</button>
+      <button class="offer-pill" onclick="switchOffer('longwknd')">Long Weekends</button>
+      <button class="offer-pill" onclick="switchOffer('special')">Special Occasions</button>
+    </div>
+
+    <div class="offer-panel active" id="offer-everyday">
+      <div class="offers-grid">
+        <div class="offer-card fade-up"><span class="offer-badge-tag">Pickup Only</span><div class="offer-icon">🍕</div><div class="offer-title">$11.99</div><div class="offer-subtitle">12" One Topping Pizza</div><div class="offer-desc">Any one topping on a fresh 12" NY style pizza. Pick-up only.</div><div class="offer-fine">Additional toppings extra. Cannot combine offers. Must mention coupon.</div></div>
+        <div class="offer-card fade-up"><span class="offer-badge-tag">Pickup Only</span><div class="offer-icon">🍕</div><div class="offer-title">$12.99</div><div class="offer-subtitle">14" One Topping Pizza</div><div class="offer-desc">Any one topping on a fresh 14" NY style pizza. Pick-up only.</div><div class="offer-fine">Additional toppings extra. Cannot combine offers. Must mention coupon.</div></div>
+        <div class="offer-card fade-up"><span class="offer-badge-tag">Pickup Only</span><div class="offer-icon">🍕</div><div class="offer-title">$14.99</div><div class="offer-subtitle">16" One Topping Pizza</div><div class="offer-desc">Any one topping on a fresh 16" NY style pizza. Pick-up only.</div><div class="offer-fine">Additional toppings extra. Cannot combine offers. Must mention coupon.</div></div>
+        <div class="offer-card fade-up"><div class="offer-icon">🥖</div><div class="offer-title">$21.99</div><div class="offer-subtitle">Any Two 8" Subs</div><div class="offer-desc">Choose any two 8" subs from our full selection.</div><div class="offer-fine">Cannot combine offers. Must mention coupon.</div></div>
+        <div class="offer-card fade-up"><div class="offer-icon">🥖</div><div class="offer-title">$31.99</div><div class="offer-subtitle">Any Two 12" Subs</div><div class="offer-desc">Choose any two 12" subs from our full selection.</div><div class="offer-fine">Cannot combine offers. Must mention coupon.</div></div>
+        <div class="offer-card fade-up"><div class="offer-icon">🍗</div><div class="offer-title">$12.99</div><div class="offer-subtitle">Wings + Fries + Soda</div><div class="offer-desc">6pc Party Wings + Fries + Can Soda combo.</div><div class="offer-fine">Cannot combine offers. Must mention coupon.</div></div>
+        <div class="offer-card fade-up"><div class="offer-icon">🥙</div><div class="offer-title">$20.99</div><div class="offer-subtitle">8" Sub + Wings + Soda</div><div class="offer-desc">Any 8" Sub + 6pc Party Wings + Can Soda.</div><div class="offer-fine">Cannot combine offers. Must mention coupon.</div></div>
+        <div class="offer-card fade-up"><div class="offer-icon">🥤</div><div class="offer-title">$3.99</div><div class="offer-subtitle">Combo Upgrade</div><div class="offer-desc">Add Small Fries + Can Soda to any order.</div><div class="offer-fine">Cannot combine offers. Must mention coupon.</div></div>
+      </div>
+    </div>
+    <div class="offer-panel" id="offer-weekday">
+      <div class="offers-grid">
+        <div class="offer-card fade-up"><span class="offer-badge-tag">Mon–Fri</span><div class="offer-icon">🕙</div><div class="offer-title">Lunch Special</div><div class="offer-subtitle">Coming Soon</div><div class="offer-desc">Weekday lunch deals coming soon. Call us for current offers!</div><div class="offer-fine">443.860.9251</div></div>
+        <div class="offer-card fade-up"><span class="offer-badge-tag">Mon–Thu</span><div class="offer-icon">🍕</div><div class="offer-title">Happy Hour</div><div class="offer-subtitle">Coming Soon</div><div class="offer-desc">Midweek happy hour on slices, wings, and drinks.</div><div class="offer-fine">Subject to availability.</div></div>
+        <div class="offer-card fade-up"><span class="offer-badge-tag">Add Your Deal</span><div class="offer-icon">✏️</div><div class="offer-title">Your Deal Here</div><div class="offer-subtitle">Configurable</div><div class="offer-desc">Reserved for weekday promotions. Edit this card to activate.</div><div class="offer-fine">Contact webmaster to update.</div></div>
+      </div>
+    </div>
+    <div class="offer-panel" id="offer-weekend">
+      <div class="offers-grid">
+        <div class="offer-card fade-up"><span class="offer-badge-tag">Sat & Sun</span><div class="offer-icon">🎉</div><div class="offer-title">Weekend Feast</div><div class="offer-subtitle">Coming Soon</div><div class="offer-desc">Weekend family bundles and group deals for game days.</div><div class="offer-fine">Call 443.860.9251 for details.</div></div>
+        <div class="offer-card fade-up"><span class="offer-badge-tag">Sat & Sun</span><div class="offer-icon">🏈</div><div class="offer-title">Game Day Bundle</div><div class="offer-subtitle">Coming Soon</div><div class="offer-desc">Wings, pizza, and drinks — the game day trio.</div><div class="offer-fine">Subject to availability.</div></div>
+        <div class="offer-card fade-up"><span class="offer-badge-tag">Add Your Deal</span><div class="offer-icon">✏️</div><div class="offer-title">Your Deal Here</div><div class="offer-subtitle">Configurable</div><div class="offer-desc">Slot for weekend-specific deals. Edit to activate.</div><div class="offer-fine">Contact webmaster to update.</div></div>
+      </div>
+    </div>
+    <div class="offer-panel" id="offer-holiday">
+      <div class="offers-grid">
+        <div class="offer-card fade-up"><span class="offer-badge-tag">Holidays</span><div class="offer-icon">🎄</div><div class="offer-title">Holiday Special</div><div class="offer-subtitle">Seasonal Offer</div><div class="offer-desc">Exclusive holiday bundles for family gatherings. Details announced seasonally.</div><div class="offer-fine">Follow us on social media.</div></div>
+        <div class="offer-card fade-up"><span class="offer-badge-tag">Add Your Deal</span><div class="offer-icon">🎆</div><div class="offer-title">Holiday Bundle</div><div class="offer-subtitle">Configurable</div><div class="offer-desc">Reserve for Thanksgiving, Christmas, New Year, 4th of July promos.</div><div class="offer-fine">Contact webmaster to activate.</div></div>
+      </div>
+    </div>
+    <div class="offer-panel" id="offer-longwknd">
+      <div class="offers-grid">
+        <div class="offer-card fade-up"><span class="offer-badge-tag">Long Weekends</span><div class="offer-icon">☀️</div><div class="offer-title">Long Weekend Fiesta</div><div class="offer-subtitle">3-Day Weekend Deal</div><div class="offer-desc">Special combos for Memorial Day, Labor Day, 4th of July weekends.</div><div class="offer-fine">Call 443.860.9251 for details.</div></div>
+        <div class="offer-card fade-up"><span class="offer-badge-tag">Add Your Deal</span><div class="offer-icon">✏️</div><div class="offer-title">Your Deal Here</div><div class="offer-subtitle">Configurable</div><div class="offer-desc">Activate and customize for each holiday weekend.</div><div class="offer-fine">Contact webmaster to update.</div></div>
+      </div>
+    </div>
+    <div class="offer-panel" id="offer-special">
+      <div class="offers-grid">
+        <div class="offer-card fade-up"><span class="offer-badge-tag">Super Bowl</span><div class="offer-icon">🏆</div><div class="offer-title">Big Game Bundle</div><div class="offer-subtitle">Special Event</div><div class="offer-desc">Wings by the bucket, 16" pies, shareables. Ask about Big Game catering!</div><div class="offer-fine">Must mention event offer when ordering.</div></div>
+        <div class="offer-card fade-up"><span class="offer-badge-tag">Add Your Deal</span><div class="offer-icon">✏️</div><div class="offer-title">Your Deal Here</div><div class="offer-subtitle">Configurable</div><div class="offer-desc">Valentine's Day, Mother's Day, anniversaries, local events, and more.</div><div class="offer-fine">Contact webmaster to activate.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ PARTIES ═══════ -->
+<section id="parties">
+  <div class="container section-pad">
+    <div class="section-header">
+      <span class="t-eyebrow">Celebrate With Us</span>
+      <h2 class="t-heading" style="font-size:clamp(1.8rem,4vw,3rem);">Party Packages</h2>
+      <div class="divider"><span class="divider-icon">🎉</span></div>
+      <p class="t-sub" style="max-width:480px;margin:0.5rem auto 0;">From birthday bashes to bachelor parties — we've got food to make every celebration unforgettable.</p>
+    </div>
+    <div class="party-grid">
+      <div class="party-card"><div class="party-bg" style="background-image:url('images/party-birthday.jpg')"></div><div class="party-overlay"><div class="party-emoji">🎂</div><div class="party-name">Birthday Party</div><div class="party-line">Unforgettable birthday spreads with custom pizza & wings packages.</div><ul class="party-list"><li>Large party pizza selection</li><li>18pc wings platter</li><li>Drinks & sides</li></ul><div class="party-cta-text">Inquire Now →</div></div></div>
+      <div class="party-card"><div class="party-bg" style="background-image:url('images/party-bachelorette.jpg')"></div><div class="party-overlay"><div class="party-emoji">👰</div><div class="party-name">Bachelorette Party</div><div class="party-line">Last fling before the ring — fuel the fun with our platters.</div><ul class="party-list"><li>NY & Indo-Italian pizza spread</li><li>Loaded fries & appetizers</li><li>Wings — any sauce!</li></ul><div class="party-cta-text">Inquire Now →</div></div></div>
+      <div class="party-card"><div class="party-bg" style="background-image:url('images/party-bachelor.jpg')"></div><div class="party-overlay"><div class="party-emoji">🤵</div><div class="party-name">Bachelor Party</div><div class="party-line">Real Ribeye cheesesteaks and loaded wings for the last night out.</div><ul class="party-list"><li>Ribeye cheesesteak platter</li><li>Wings bucket (18pc+)</li><li>Loaded fries & subs</li></ul><div class="party-cta-text">Inquire Now →</div></div></div>
+      <div class="party-card"><div class="party-bg" style="background-image:url('images/party-girls.jpg')"></div><div class="party-overlay"><div class="party-emoji">👯‍♀️</div><div class="party-name">Girls' Night</div><div class="party-line">A spread that satisfies every craving — veggie to spicy.</div><ul class="party-list"><li>Veggie & chicken pizzas</li><li>Salad selection</li><li>Boneless wings</li></ul><div class="party-cta-text">Inquire Now →</div></div></div>
+      <div class="party-card"><div class="party-bg" style="background-image:url('images/party-corporate.jpg')"></div><div class="party-overlay"><div class="party-emoji">🏢</div><div class="party-name">Corporate Catering</div><div class="party-line">Feed your team. Impress your clients. Reliable and delicious.</div><ul class="party-list"><li>Bulk pizza & sub orders</li><li>Platters for 10–100+ people</li><li>Advance scheduling</li></ul><div class="party-cta-text">Inquire Now →</div></div></div>
+      <div class="party-card"><div class="party-bg" style="background-image:url('images/party-gameday.jpg')"></div><div class="party-overlay"><div class="party-emoji">🏈</div><div class="party-name">Game Day Party</div><div class="party-line">Wings, cheesesteaks, and pizza — the ultimate game day trio.</div><ul class="party-list"><li>Party wing buckets</li><li>Large NY style pies</li><li>Loaded fries & dips</li></ul><div class="party-cta-text">Inquire Now →</div></div></div>
+    </div>
+    <div style="text-align:center;margin-top:2.5rem;">
+      <p class="t-sub" style="margin-bottom:1.25rem;">Planning a party? Call us to arrange your custom package.</p>
+      <a href="tel:4438609251" class="btn btn-maroon">📞 Call 443.860.9251</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ CONTACT ═══════ -->
+<section id="contact">
+  <div class="container section-pad">
+    <div class="contact-grid">
+      <div class="contact-left">
+        <h2 style="color:#F5ECD8;">Find Us &<br>Get in Touch</h2>
+        <div class="ci">
+          <div class="ci-icon">📍</div>
+          <div class="ci-text">
+            <h4>Address</h4>
+            <p>6400 Baltimore National Pike, Ste 160<br>Catonsville, MD 21228</p>
+          </div>
+        </div>
+        <div class="ci">
+          <div class="ci-icon">📞</div>
+          <div class="ci-text">
+            <h4>Phone</h4>
+            <a href="tel:4438609251">443.860.9251</a>
+          </div>
+        </div>
+        <div class="ci">
+          <div class="ci-icon">🕙</div>
+          <div class="ci-text">
+            <h4>Hours</h4>
+            <div>
+              <div class="hours-row"><span class="dy">Monday – Saturday</span><span>10:30am – 10:30pm</span></div>
+              <div class="hours-row"><span class="dy">Sunday</span><span>11:00am – 10:00pm</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="ci">
+          <div class="ci-icon">🛵</div>
+          <div class="ci-text">
+            <h4>Delivery</h4>
+            <p>$11 minimum for delivery.<br>Delivery charge may apply.</p>
+          </div>
+        </div>
+        <div class="contact-btns">
+          <a href="tel:4438609251" class="btn btn-maroon">📞 Order by Phone</a>
+          <a href="https://order.toasttab.com/online/slice-n-steak-6400-baltimore-national-pike-suite-160b" target="_blank" rel="noopener" class="btn btn-outline-gold">🛒 Order Online</a>
+        </div>
+      </div>
+      <div class="contact-map">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3085.0!2d-76.745!3d39.2851!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c7da0d2e46c6b1%3A0x0!2s6400+Baltimore+National+Pike%2C+Catonsville%2C+MD+21228!5e0!3m2!1sen!2sus!4v1" allowfullscreen loading="lazy" title="Slice N Steak Location"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ FOOTER ═══════ -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo-row">
+        <svg width="36" height="36" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <path d="M100 20 A80 80 0 0 0 20 100 L100 100 Z" fill="none" stroke="#B8750A" stroke-width="8"/>
+          <path d="M20 100 A80 80 0 0 0 100 180 L100 100 Z" fill="none" stroke="#B8750A" stroke-width="8"/>
+          <circle cx="62" cy="78" r="7" fill="none" stroke="#B8750A" stroke-width="5"/>
+          <circle cx="76" cy="120" r="9" fill="none" stroke="#B8750A" stroke-width="5"/>
+          <line x1="100" y1="15" x2="100" y2="185" stroke="#6B1020" stroke-width="5"/>
+          <rect x="112" y="62" width="66" height="11" rx="5" fill="none" stroke="#6B1020" stroke-width="6"/>
+          <rect x="112" y="81" width="66" height="8" rx="4" fill="none" stroke="#6B1020" stroke-width="5"/>
+          <path d="M112 96 Q145 110 178 96" fill="none" stroke="#6B1020" stroke-width="5"/>
+          <rect x="112" y="111" width="66" height="8" rx="4" fill="none" stroke="#6B1020" stroke-width="5"/>
+          <rect x="112" y="127" width="66" height="13" rx="6" fill="none" stroke="#6B1020" stroke-width="6"/>
+        </svg>
+        <span class="footer-logo-text">SLICE <em>'N</em> STEAK</span>
+      </div>
+      <p class="footer-tagline">Pizza & Ribeye Cheesesteaks — Catonsville, MD.<br>100% Ribeye. Cooper Sharp Cheese. Fresh daily.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Menu</h4>
+      <ul>
+        <li><a href="#menu" onclick="switchTab('ribeye')">Ribeye Cheesesteak</a></li>
+        <li><a href="#menu" onclick="switchTab('nypizza')">NY Style Pizza</a></li>
+        <li><a href="#menu" onclick="switchTab('indo')">Indo-Italian Pizza</a></li>
+        <li><a href="#menu" onclick="switchTab('wings')">Wings & Tenders</a></li>
+        <li><a href="#menu" onclick="switchTab('subs')">Subs & Sandwiches</a></li>
+        <li><a href="#menu" onclick="switchTab('sides')">Sides & Salads</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Info</h4>
+      <ul>
+        <li><a href="#offers">Deals & Offers</a></li>
+        <li><a href="#parties">Party Packages</a></li>
+        <li><a href="#contact">Location & Hours</a></li>
+        <li><a href="tel:4438609251">443.860.9251</a></li>
+        <li><a href="https://order.toasttab.com/online/slice-n-steak-6400-baltimore-national-pike-suite-160b" target="_blank" rel="noopener">🛒 Order Online</a></li>
+      </ul>
+    </div>
+  </div>
+  <div style="max-width:1200px;margin:0 auto 1.5rem;border-top:1px solid rgba(255,255,255,0.06);padding-top:1.5rem;">
+    <p class="allergen">⚠️ <strong>Food Allergy Warning:</strong> Our kitchen handles common allergens including dairy, eggs, wheat, soy, peanuts, tree nuts, fish, and shellfish. Please notify us of any allergies before ordering. Prices & menu items subject to change. Subject to 6% sales tax. 3% credit card processing fee.</p>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Slice 'N Steak. All rights reserved.</span>
+    <a href="https://order.toasttab.com/online/slice-n-steak-6400-baltimore-national-pike-suite-160b" target="_blank" rel="noopener" class="footer-order-link">🛒 Order Online</a>
+    <span>6400 Baltimore National Pike, Ste 160, Catonsville, MD 21228</span>
+  </div>
+</footer>
+
+<!-- Sticky bar — mobile only -->
+<a href="https://order.toasttab.com/online/slice-n-steak-6400-baltimore-national-pike-suite-160b" target="_blank" rel="noopener" class="sticky-bar">🛒 Order Online Now</a>
+
+<script>
+/* ── Menu tabs ── */
+const tabIds = ['ribeye','nypizza','indo','wings','subs','sides'];
+function switchTab(id) {
+  document.querySelectorAll('.tab-btn').forEach((b,i) => b.classList.toggle('active', tabIds[i]===id));
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  const panel = document.getElementById('tab-'+id);
+  if (panel) { panel.classList.add('active'); fadeCheck(); }
+}
+
+/* ── Offer tabs ── */
+function switchOffer(id) {
+  document.querySelectorAll('.offer-pill').forEach(b => b.classList.remove('active'));
+  event.currentTarget.classList.add('active');
+  document.querySelectorAll('.offer-panel').forEach(p => p.classList.remove('active'));
+  const panel = document.getElementById('offer-'+id);
+  if (panel) { panel.classList.add('active'); fadeCheck(); }
+}
+
+/* ── Mobile drawer ── */
+const hamburger = document.getElementById('hamburgerBtn');
+const drawer = document.getElementById('mobileDrawer');
+hamburger.addEventListener('click', () => {
+  const open = drawer.classList.toggle('open');
+  hamburger.setAttribute('aria-expanded', open);
+});
+function closeDrawer() { drawer.classList.remove('open'); }
+document.addEventListener('click', e => {
+  if (!drawer.contains(e.target) && !hamburger.contains(e.target)) closeDrawer();
+});
+
+/* ── Fade-up on scroll ── */
+function fadeCheck() {
+  document.querySelectorAll('.fade-up:not(.in)').forEach(el => {
+    if (el.getBoundingClientRect().top < window.innerHeight - 50) el.classList.add('in');
+  });
+}
+window.addEventListener('scroll', fadeCheck, { passive:true });
+window.addEventListener('load', fadeCheck);
+fadeCheck();
+
+/* ── Navbar shrink ── */
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.style.height = window.scrollY > 60 ? '56px' : '';
+}, { passive:true });
+</script>
+</body>
+</html>
